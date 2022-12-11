@@ -26,4 +26,5 @@ public class WebSecurityConfig {
         provider.setPasswordEncoder(new BCryptPasswordEncoder());
         return provider;
     }
+
 }

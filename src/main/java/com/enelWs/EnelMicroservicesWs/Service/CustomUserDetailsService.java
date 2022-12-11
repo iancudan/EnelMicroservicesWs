@@ -21,9 +21,6 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);
@@ -73,11 +70,11 @@ public class CustomUserDetailsService implements UserDetailsService {
         return userRepository.findAll();
     }
     public User resetPassword(User user){
-        String password = new Random().ints(10, 33, 122).collect(StringBuilder::new,
-                        StringBuilder::appendCodePoint, StringBuilder::append)
-                .toString();
-
-        user.setPassword(bCryptPasswordEncoder.encode(password));
+//        String password = new Random().ints(10, 33, 122).collect(StringBuilder::new,
+//                        StringBuilder::appendCodePoint, StringBuilder::append)
+//                .toString();
+//
+//        user.setPassword(bCryptPasswordEncoder.encode(password));
         return userRepository.saveAndFlush(user);
     }
 
