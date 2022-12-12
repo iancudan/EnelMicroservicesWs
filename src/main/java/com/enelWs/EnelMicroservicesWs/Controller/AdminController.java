@@ -1,9 +1,13 @@
 package com.enelWs.EnelMicroservicesWs.Controller;
 
 
+import com.enelWs.EnelMicroservicesWs.Entity.AnreSummary;
 import com.enelWs.EnelMicroservicesWs.Entity.Dictionar;
+import com.enelWs.EnelMicroservicesWs.Service.AnreSummaryService;
 import com.enelWs.EnelMicroservicesWs.Service.CustomUserDetailsService;
+import com.enelWs.EnelMicroservicesWs.Service.DashboardService;
 import com.enelWs.EnelMicroservicesWs.Service.DictionarService;
+import com.enelWs.EnelMicroservicesWs.UTIL.Dashboard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +23,8 @@ public class AdminController {
     CustomUserDetailsService customUserDetailsService;
     @Autowired
     DictionarService dictionarService;
+    @Autowired
+    DashboardService dashboardService;
 
 
     @GetMapping("/home")
@@ -34,5 +40,11 @@ public class AdminController {
         else
             throw new ResponseStatusException(
                 HttpStatus.NOT_FOUND, "Page Not Found");
+    }
+
+
+    @GetMapping("/getDashboard")
+    public Dashboard getDashboard(){
+        return dashboardService.getDashboard();
     }
 }
