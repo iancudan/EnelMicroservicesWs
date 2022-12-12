@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface DictionarRepository extends JpaRepository<Dictionar,Long> {
 
+
+    List<Dictionar> findAllByStatusAndValid(String status,String valid);
 }

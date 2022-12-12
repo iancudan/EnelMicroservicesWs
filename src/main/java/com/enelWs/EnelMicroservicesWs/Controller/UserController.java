@@ -19,9 +19,12 @@ public class UserController {
 
     @PostMapping("/addUser")
     public User addUser(User user){
-        return customUserDetailsService.addUser(user);
-    }
+        User newUser = new User();
+        if(user.getEmail().contains("@enel.com"))
+            newUser = customUserDetailsService.addUser(user);
 
+        return newUser;
+    }
 
     @PostMapping("/updateUser")
     public List<User> updateUser(User user){

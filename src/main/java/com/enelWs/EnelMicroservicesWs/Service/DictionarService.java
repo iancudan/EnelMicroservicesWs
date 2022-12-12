@@ -2,6 +2,7 @@ package com.enelWs.EnelMicroservicesWs.Service;
 
 import com.enelWs.EnelMicroservicesWs.Entity.Dictionar;
 import com.enelWs.EnelMicroservicesWs.Repository.DictionarRepository;
+import com.enelWs.EnelMicroservicesWs.UTIL.DictionarUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +14,9 @@ public class DictionarService {
     @Autowired
     DictionarRepository dictionarRepository;
 
+
     public List<Dictionar> findAll(){
-        return dictionarRepository.findAll();
+        return dictionarRepository.findAllByStatusAndValid(DictionarUtil.STATUS_APROBAT.getName(),DictionarUtil.VALID_TRUE.getName());
     }
 
     public Dictionar findById(Long id){
