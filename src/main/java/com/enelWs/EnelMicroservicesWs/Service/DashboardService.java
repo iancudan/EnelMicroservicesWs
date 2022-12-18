@@ -8,10 +8,7 @@ import com.enelWs.EnelMicroservicesWs.UTIL.Dashboard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class DashboardService {
@@ -25,7 +22,19 @@ public class DashboardService {
 
     public Dashboard getDashboard (){
         Dashboard dashboard = new Dashboard();
+        List<AnreSummary> lastTen = new ArrayList<>();
         List<AnreSummary> anreSummaryList = anreSummaryRepository.findAll();
+        Collections.reverse(anreSummaryList);
+        if(anreSummaryList.size() < 6){
+            for(int i = 0 ; i< anreSummaryList.size();i++){
+                lastTen.add(anreSummaryList.get(i));
+            }
+        }else{
+            for(int i = 0 ; i< 5;i++){
+                lastTen.add(anreSummaryList.get(i));
+            }
+        }
+        dashboard.setLastAnreSummary(lastTen);
         List<AnreSummaryHistory> anreSummaryHistoryList = anreSummaryHistoryRepository.findAll();
         /*currentDashboard*/
         dashboard = setCurrentDashboard(dashboard,anreSummaryList);
@@ -109,4 +118,6 @@ public class DashboardService {
         double percent = (current * 100.00) / total;
         return percent;
     }
+
+
 }

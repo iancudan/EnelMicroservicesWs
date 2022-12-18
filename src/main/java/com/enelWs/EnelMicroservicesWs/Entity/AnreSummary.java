@@ -6,7 +6,7 @@ import jakarta.persistence.Id;
 import java.util.Date;
 
 @Entity
-public class AnreSummary {
+public class AnreSummary implements Comparable<AnreSummary> {
 
     @Id
     private Long id;
@@ -117,5 +117,20 @@ public class AnreSummary {
 
     public void setInsertDatetime(Date insertDatetime) {
         this.insertDatetime = insertDatetime;
+    }
+
+    @Override
+    public int compareTo(AnreSummary a) {
+        if (this.getId() > a.getId() )
+            return 1;
+        else if ( this.getId() < a.getId() )
+            return -1;
+        else {
+            if ( this.getId() > a.getId() )
+                return 1;
+            else
+                return -1;
+        }
+
     }
 }

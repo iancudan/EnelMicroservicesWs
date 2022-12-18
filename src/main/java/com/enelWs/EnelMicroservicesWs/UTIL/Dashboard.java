@@ -1,5 +1,9 @@
 package com.enelWs.EnelMicroservicesWs.UTIL;
 
+import com.enelWs.EnelMicroservicesWs.Entity.AnreSummary;
+
+import java.util.List;
+
 public class Dashboard {
 
     private String curentTotalCereri;
@@ -19,6 +23,17 @@ public class Dashboard {
     private String totalErori;
     private String procentErori;
     private String procentOk;
+
+    private List<AnreSummary> lastAnreSummary;
+
+
+    public List<AnreSummary> getLastAnreSummary() {
+        return lastAnreSummary;
+    }
+
+    public void setLastAnreSummary(List<AnreSummary> lastAnreSummary) {
+        this.lastAnreSummary = lastAnreSummary;
+    }
 
     public String getOldTotalCereri() {
         return oldTotalCereri;
